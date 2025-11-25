@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hiato - Criado para inspirar, feito para evoluir</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
     <!-- Hero Section -->
     <div class="hero">
         <div class="logo-container">
-            <img src="img/logo.png" alt="Logo Hiato" class="logo-img">
+            <img src="1.png" alt="Logo Hiato" class="logo-img">
             <p class="tagline">Criado para inspirar, feito para evoluir.</p>
         </div>
     </div>
@@ -24,8 +26,8 @@
             <li><a href="#sobre">Sobre</a></li>
             <li><a href="#participar">Como Participar</a></li>
             <li><a href="#eventos">Eventos</a></li>
-            <li><a href="#resultados">Resultados</a></li>
             <li><a href="#comentarios">Comentários</a></li>
+            <li><a href="#resultados">Resultados</a></li>
             <li><a href="#" id="btn-login">Login</a></li>
             <li><a href="#" id="btn-cadastro">Cadastro</a></li>
         </ul>
@@ -37,7 +39,7 @@
                 <li><a href="#" id="btn-cadastrar-instituicao">Cadastrar Instituição</a></li>
                 <li><a href="#" id="btn-cadastrar-espaco">Cadastrar Espaço</a></li>
                 <li><a href="#" id="btn-cadastrar-evento">Cadastrar Evento</a></li>
-                <li><a href="#" id="btn-adicionar-comentario">Adicionar Comentário</a></li>
+                <li><a href="#" id="btn-fazer-comentario">Fazer Comentários</a></li>
                 <li><a href="#" id="btn-logout">Sair</a></li>
             </ul>
         </div>
@@ -50,12 +52,16 @@
 
             <div class="sobre-content">
                 <div class="sobre-text">
-                    <p>O projeto Hiato é uma iniciativa inovadora onde pessoas com tendência a dependência de internet possam relaxar e reduzir a ansiedade.</p>
-                    <p style="margin-top: 20px;">As atividades podem incluir jogos de raciocínio lógico, dinâmicas em grupo e desafios interativos.</p>
+                    <p>O projeto Hiato é uma iniciativa inovadora onde pessoas com tendência a dependência de internet
+                        possam relaxar e reduzir a ansiedade.</p>
+                    <p style="margin-top: 20px;">As atividades podem incluir jogos de raciocínio lógico, dinâmicas em
+                        grupo e desafios interativos.</p>
                 </div>
 
-                <div class="sobre-image"></div>
+
+                <img src="2.png" alt="sala Hiato" class="sala-img">
             </div>
+        </div>
         </div>
     </section>
 
@@ -97,6 +103,27 @@
         </div>
     </section>
 
+    <!-- Comentários -->
+    <section id="comentarios">
+        <div class="container">
+            <h2>Comentários</h2>
+
+            <div style="text-align: center; margin-bottom: 40px;">
+                <p style="color: #666; font-size: 1.1rem; margin-bottom: 20px;">
+                    Veja o que as pessoas estão comentando sobre o projeto Hiato
+                </p>
+                <button class="btn" id="btn-adicionar-comentario-publico" style="display: inline-block;">
+                    ✍️ Adicionar Comentário
+                </button>
+            </div>
+
+            <div id="comentarios-publicos-lista"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin-top: 40px;">
+                <!-- Comentários públicos serão carregados aqui -->
+            </div>
+        </div>
+    </section>
+
     <!-- Resultados -->
     <section id="resultados">
         <div class="container">
@@ -117,16 +144,6 @@
                     <div class="resultado-number">40%</div>
                     <div class="resultado-label">Redução da dependência</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Comentários -->
-    <section id="comentarios">
-        <div class="container">
-            <h2>Comentários dos Participantes</h2>
-            <div class="comentarios-grid" id="comentarios-lista">
-                <!-- Comentários serão carregados aqui -->
             </div>
         </div>
     </section>
@@ -262,27 +279,88 @@
         </div>
     </div>
 
+    <!-- Modal Detalhes do Evento com Comentários -->
+    <div class="modal" id="modal-evento-detalhes">
+        <div class="modal-content modal-detalhes">
+            <span class="close">&times;</span>
+            <h2 id="detalhes-evento-titulo">Detalhes do Evento</h2>
+
+            <div id="detalhes-evento-info" class="detalhes-info">
+                <!-- Informações do evento serão carregadas aqui -->
+            </div>
+
+            <div class="comentarios-secao">
+                <div class="comentarios-header">
+                    <h3>Comentários e Avaliações</h3>
+                    <button class="btn btn-pequeno" id="btn-comentar-evento">Adicionar Comentário</button>
+                </div>
+
+                <div id="comentarios-evento-lista" class="comentarios-lista-evento">
+                    <!-- Comentários serão carregados aqui -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal Adicionar Comentário -->
     <div class="modal" id="modal-comentario">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Adicionar Comentário</h2>
-            <form id="form-comentario">
-                <label>Evento</label>
-                <input type="text" required>
-
+            <h2>Avaliar Evento</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">
+                <strong id="comentario-evento-nome"></strong>
+            </p>
+            <form id="form-comentario-evento">
                 <label>Sua Avaliação</label>
-                <div class="rating">
+                <div class="rating" id="rating-evento">
                     <span class="star" data-rating="1">★</span>
                     <span class="star" data-rating="2">★</span>
                     <span class="star" data-rating="3">★</span>
                     <span class="star" data-rating="4">★</span>
                     <span class="star" data-rating="5">★</span>
                 </div>
-                <input type="hidden" id="rating-value" value="0">
+                <input type="hidden" id="rating-evento-value" value="0">
 
                 <label>Seu Comentário</label>
-                <textarea rows="5" required></textarea>
+                <textarea id="texto-comentario-evento" rows="5" required
+                    placeholder="Compartilhe sua experiência..."></textarea>
+
+                <button type="submit" class="btn">Enviar Avaliação</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- NOVO: Modal Fazer Comentários Gerais -->
+    <div class="modal" id="modal-comentarios-gerais">
+        <div class="modal-content modal-detalhes">
+            <span class="close">&times;</span>
+            <h2>💬 Painel de Comentários</h2>
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <p style="color: #666; margin-bottom: 15px;">Deixe aqui seus comentários, sugestões e feedback sobre o
+                    projeto Hiato.</p>
+                <button class="btn" id="btn-novo-comentario-geral">✍️ Novo Comentário</button>
+            </div>
+
+            <div id="lista-comentarios-gerais"
+                style="display: flex; flex-direction: column; gap: 15px; max-height: 500px; overflow-y: auto;">
+                <!-- Comentários gerais serão carregados aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- NOVO: Modal Adicionar Comentário Geral -->
+    <div class="modal" id="modal-novo-comentario-geral">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>💬 Novo Comentário</h2>
+            <form id="form-novo-comentario-geral">
+                <label>Assunto</label>
+                <input type="text" id="assunto-comentario-geral" required placeholder="Ex: Sugestão de melhoria">
+
+                <label>Seu Comentário</label>
+                <textarea id="texto-comentario-geral" rows="6" required
+                    placeholder="Escreva seu comentário, sugestão ou feedback..."></textarea>
 
                 <button type="submit" class="btn">Enviar Comentário</button>
             </form>
@@ -291,5 +369,5 @@
 
     <script src="js/script.js"></script>
 </body>
-</html>
 
+</html>

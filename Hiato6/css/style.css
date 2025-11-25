@@ -45,7 +45,7 @@ body {
     width: 160px;
     height: auto;
     margin-bottom: 10px;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .tagline {
@@ -61,7 +61,7 @@ body {
 nav {
     background: rgba(255, 255, 255, 0.95);
     padding: 12px 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -142,7 +142,7 @@ nav a:hover {
     right: 0;
     top: 50px;
     background: white;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     min-width: 220px;
     list-style: none;
@@ -211,12 +211,12 @@ h2 {
     line-height: 1.9;
 }
 
-.sobre-image {
+.sala-img {
     width: 100%;
     height: 280px;
     background: linear-gradient(135deg, #1e3c72, #34a853);
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* COMO PARTICIPAR */
@@ -231,7 +231,7 @@ h2 {
     background: white;
     padding: 35px;
     border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
     text-align: center;
     transition: transform 0.3s;
 }
@@ -263,7 +263,7 @@ h2 {
     background: white;
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s;
 }
 
@@ -287,6 +287,60 @@ h2 {
     color: #1e3c72;
 }
 
+/* Botões de ação do evento */
+.evento-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-participar,
+.btn-inscrito,
+.btn-esgotado,
+.btn-detalhes {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-participar {
+    background: #34a853;
+    color: white;
+}
+
+.btn-participar:hover {
+    background: #2d8e47;
+    transform: translateY(-2px);
+}
+
+.btn-inscrito {
+    background: #4caf50;
+    color: white;
+    cursor: default;
+}
+
+.btn-esgotado {
+    background: #999;
+    color: white;
+    cursor: not-allowed;
+}
+
+.btn-detalhes {
+    background: #1e3c72;
+    color: white;
+}
+
+.btn-detalhes:hover {
+    background: #163159;
+}
+
 /* RESULTADOS */
 .resultados-grid {
     display: grid;
@@ -300,7 +354,7 @@ h2 {
     padding: 35px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
 }
 
 .resultado-number {
@@ -315,56 +369,6 @@ h2 {
     color: #555;
 }
 
-/* COMENTÁRIOS */
-.comentarios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.comentario-card {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
-}
-
-.comentario-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.comentario-autor {
-    font-weight: 600;
-    color: #1e3c72;
-    font-size: 1.1rem;
-}
-
-.comentario-rating {
-    color: #ffc107;
-    font-size: 1.2rem;
-}
-
-.comentario-evento {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-}
-
-.comentario-texto {
-    color: #555;
-    line-height: 1.6;
-}
-
-.comentario-data {
-    color: #999;
-    font-size: 0.85rem;
-    margin-top: 10px;
-}
-
 /* ----------------------------------------- */
 /* MODAIS */
 /* ----------------------------------------- */
@@ -376,7 +380,7 @@ h2 {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     overflow-y: auto;
 }
 
@@ -390,7 +394,7 @@ h2 {
     background: white;
     padding: 35px;
     border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
     width: 90%;
     max-width: 480px;
     position: relative;
@@ -398,11 +402,19 @@ h2 {
     animation: slideDown 0.3s ease-out;
 }
 
+/* Modal maior para detalhes do evento */
+.modal-detalhes {
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
 @keyframes slideDown {
     from {
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -430,6 +442,12 @@ h2 {
     color: #1e3c72;
 }
 
+.modal-content h3 {
+    color: #1e3c72;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
 .modal-content form {
     display: flex;
     flex-direction: column;
@@ -454,6 +472,90 @@ h2 {
 
 .modal-content textarea {
     resize: vertical;
+}
+
+/* Detalhes do Evento */
+.detalhes-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.detalhes-info p {
+    margin: 10px 0;
+    color: #555;
+    font-size: 1rem;
+}
+
+.detalhes-info strong {
+    color: #1e3c72;
+}
+
+/* Seção de Comentários no Modal */
+.comentarios-secao {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.comentarios-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn-pequeno {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.comentarios-lista-evento {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.comentario-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #34a853;
+}
+
+.comentario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comentario-autor {
+    font-weight: 600;
+    color: #1e3c72;
+    font-size: 1rem;
+}
+
+.comentario-rating {
+    color: #ffc107;
+    font-size: 1.1rem;
+}
+
+.comentario-texto {
+    color: #555;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.comentario-data {
+    color: #999;
+    font-size: 0.85rem;
 }
 
 /* Rating Stars */
@@ -570,6 +672,26 @@ footer {
         width: 95%;
         padding: 25px;
     }
+
+    .modal-detalhes {
+        max-width: 95%;
+    }
+
+    .comentarios-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .evento-acoes {
+        flex-direction: column;
+    }
+
+    .btn-participar,
+    .btn-inscrito,
+    .btn-esgotado,
+    .btn-detalhes {
+        width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -592,5 +714,9 @@ footer {
 
     h2 {
         font-size: 1.8rem;
+    }
+
+    .rating {
+        font-size: 1.5rem;
     }
 }
