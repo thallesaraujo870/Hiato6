@@ -1,6 +1,6 @@
 
-const API_BASE_URL = '/api';
 
+const API_BASE_URL = '/api';
 
 let usuarioLogado = false;
 let nomeUsuario = "";
