@@ -58,7 +58,6 @@ async function apiPost(endpoint, data) {
             throw new Error(`Erro: ${response.status}. Detalhes: ${errorBody || response.statusText}`);
         }
 
-        // Tenta retornar JSON, mas pode retornar texto/vazio se a API for 201 Created sem corpo
         try {
             return await response.json();
         } catch (e) {
@@ -247,11 +246,6 @@ document.getElementById("form-cadastro").addEventListener("submit", async (e) =>
     }
 });
 
-/**
- * 🏢 FUNÇÃO ADICIONADA: CADASTRO DE INSTITUIÇÃO
- * Rota: /institutions (POST)
- * Requer: Token de autenticação (authToken)
- */
 document.getElementById("form-instituicao")?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -288,8 +282,6 @@ document.getElementById("form-instituicao")?.addEventListener("submit", async (e
         console.error('Erro de cadastro de Instituição:', error);
     }
 });
-// -------------------------------------------------------------
-
 
 function mostrarMenuAdmin() {
     const adminMenu = document.getElementById("admin-menu");
@@ -346,7 +338,6 @@ async function carregarEventos() {
 }
 
 
-// Renderizar varios e varios eventos
 
 function renderizarEventos() {
     const container = document.getElementById("eventos-lista");
@@ -392,7 +383,6 @@ function renderizarEventos() {
     }).join('');
 }
 
-// Cadastrar evento
 
 document.getElementById("form-evento").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -428,7 +418,6 @@ document.getElementById("form-evento").addEventListener("submit", async (e) => {
     }
 });
 
-// CORREÇÃO: Nova função que carrega comentários SEM abrir o modal
 async function carregarComentariosGeraisSilencioso() {
     try {
         const comentariosAPI = await apiGet('/comments');
@@ -479,7 +468,6 @@ async function carregarComentariosGerais() {
     }
 }
 
-// Criar o comentario gerall
 
 document.getElementById("btn-novo-comentario-geral")?.addEventListener("click", () => {
     fecharModal("comentariosGerais");
@@ -511,7 +499,6 @@ document.getElementById("form-novo-comentario-geral")?.addEventListener("submit"
     }
 });
 
-// Fixar os comentarios gerais
 
 function renderizarComentariosGerais() {
     const container = document.getElementById("lista-comentarios-gerais");
@@ -539,7 +526,6 @@ function renderizarComentariosGerais() {
     `).join('');
 }
 
-// Fixar os comentarios publicus
 
 function renderizarComentariosPublicos() {
     const container = document.getElementById("comentarios-publicos-lista");
@@ -569,7 +555,6 @@ function renderizarComentariosPublicos() {
     `).join('');
 }
 
-// Participar do evento, é o placeholder
 
 function participarEvento(eventoId) {
     if (!usuarioLogado) {
@@ -603,8 +588,6 @@ function participarEvento(eventoId) {
 }
 
 
-// Abrir os eventos
-
 function abrirDetalhesEvento(eventoId) {
     const evento = eventos.find(e => e.id === eventoId);
 
@@ -624,13 +607,8 @@ function abrirDetalhesEvento(eventoId) {
     abrirModal("eventoDetalhes");
 }
 
-
-// CORREÇÃO: Inicialização sem abrir modal de comentários automaticamente
 document.addEventListener("DOMContentLoaded", async () => {
     // Carrega eventos da API
     await carregarEventos();
 
-    // REMOVIDO: await carregarComentariosGerais();
-    // Agora os comentários só são carregados quando o usuário faz login
-    // ou quando clica no botão de comentários
 });
