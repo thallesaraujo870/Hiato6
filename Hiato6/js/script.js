@@ -1,5 +1,6 @@
 
-const API_BASE_URL = 'http://18.218.141.160:8080';
+const API_BASE_URL = '/api';
+
 
 let usuarioLogado = false;
 let nomeUsuario = "";
