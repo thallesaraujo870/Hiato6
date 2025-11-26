@@ -42,14 +42,13 @@ body {
     margin-top: 5px;
 }
 
-/* NAVEGAÇÃO E MENU (REMOVENDO O FIXO PARA ENCAIXAR ABAIXO DO HERO) */
+/* NAVEGAÇÃO E MENU (AGORA FLUINDO CORRETAMENTE ABAIXO DO HERO) */
 nav {
     background: #34a853;
     color: white;
     padding: 15px 0;
-    /* CORREÇÃO 1: Removido position: fixed e top: 0
-       Agora a NAV flui naturalmente abaixo do .hero */
     position: static;
+    /* Garantimos que não está fixo */
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -81,7 +80,7 @@ nav ul li a:hover {
     background-color: #1e3c72;
 }
 
-/* MENU ADMIN (APENAS ESTILOS VISUAIS) */
+/* MENU ADMIN */
 .admin-menu {
     position: relative;
     margin-left: 20px;
@@ -158,10 +157,8 @@ section h2 {
     padding-bottom: 5px;
 }
 
-/* CORREÇÃO 1: REMOVE O PADDING EXTRA DA SEÇÃO SOBRE */
+/* #sobre agora com padding normalizado */
 #sobre {
-    /* Retorna ao padding padrão ou ajusta se necessário.
-       Removido o padding-top de 75px/100px */
     padding-top: 40px;
 }
 
@@ -180,10 +177,8 @@ section h2 {
     color: #555;
 }
 
-/* CORREÇÃO 2: TAMANHO DA IMAGEM E ALINHAMENTO NO GRID/FLEX */
 .sala-img {
     flex: 1;
-    /* Limitamos a largura máxima para que ela não domine o espaço */
     max-width: 450px;
     width: 100%;
     height: auto;
@@ -197,8 +192,8 @@ section h2 {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-top: 40px;
-    /* CORREÇÃO 3: Alinhamento vertical para evitar desalinhamento */
-    align-items: start;
+    /* CORREÇÃO 1: Garante que os itens do grid se estiquem para a mesma altura */
+    align-items: stretch;
 }
 
 .step {
@@ -207,8 +202,11 @@ section h2 {
     border-radius: 8px;
     border: 1px solid #ddd;
     transition: transform 0.3s, box-shadow 0.3s;
-    /* CORREÇÃO 3: Força altura mínima para os cartões ficarem uniformes */
-    min-height: 250px;
+    /* CORREÇÃO 1: Garante que o conteúdo interno use flex para centralizar, se necessário */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alinha o conteúdo ao topo dentro do step */
 }
 
 .step:hover {
@@ -317,8 +315,8 @@ section h2 {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
     margin-top: 40px;
-    /* CORREÇÃO 4: Alinhamento vertical para evitar desalinhamento */
-    align-items: center;
+    /* CORREÇÃO 2: Garante que os itens do grid se estiquem para a mesma altura */
+    align-items: stretch;
 }
 
 .resultado-card {
@@ -327,11 +325,14 @@ section h2 {
     padding: 30px 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* CORREÇÃO 4: Garante altura uniforme para evitar desalinhamento */
-    min-height: 200px;
+    /* CORREÇÃO 2: Usa flexbox para centralizar o conteúdo verticalmente */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
+    /* Centraliza o texto */
+    min-height: 180px;
+    /* Um min-height para garantir que os cards com menos texto não encolham tanto */
 }
 
 .resultado-number {
@@ -381,7 +382,7 @@ footer {
     margin: 0;
 }
 
-/* MODAIS (MANTIDOS ESTÁVEIS) */
+/* MODAIS */
 .modal {
     display: none;
     position: fixed;
@@ -527,7 +528,6 @@ footer {
     text-align: left;
 }
 
-
 /* RESPONSIVIDADE */
 @media (max-width: 900px) {
     .sobre-content {
@@ -540,7 +540,6 @@ footer {
         width: 100%;
     }
 
-    /* Ajuste para que a imagem não fique tão grande no mobile */
     .sala-img {
         max-width: 100%;
         margin-top: 20px;
@@ -552,15 +551,15 @@ footer {
         padding: 15px 0;
     }
 
-    /* OCULTA O MENU REGULAR */
     nav ul {
         display: none;
         flex-direction: column;
         width: 100%;
         background: #2a8b44;
         position: absolute;
-        top: 60px;
-        /* Ajuste para ficar abaixo do hero/nav, se necessário */
+        /* Ajuste para mobile, se o hero não for fixo */
+        top: auto;
+        /* Remover top fixo */
         left: 0;
         text-align: center;
         box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
@@ -589,7 +588,6 @@ footer {
         z-index: 1001;
     }
 
-    /* Garante que o menu e o botão admin fiquem alinhados se o JS mostrar */
     .admin-menu {
         position: static;
         margin-left: 0;
