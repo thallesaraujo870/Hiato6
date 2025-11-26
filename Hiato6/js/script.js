@@ -208,6 +208,10 @@ document.getElementById("form-login").addEventListener("submit", async (e) => {
         document.getElementById("btn-cadastro").style.display = "none";
 
         await carregarEventos();
+
+        // CORREÇÃO: Carrega os comentários apenas após o login
+        await carregarComentariosGeraisSilencioso();
+
         alert(`Bem-vindo(a), ${nomeUsuario}!`);
 
         document.getElementById("form-login").reset();
@@ -424,7 +428,31 @@ document.getElementById("form-evento").addEventListener("submit", async (e) => {
     }
 });
 
-// Carregar comentarios geraiss
+// CORREÇÃO: Nova função que carrega comentários SEM abrir o modal
+async function carregarComentariosGeraisSilencioso() {
+    try {
+        const comentariosAPI = await apiGet('/comments');
+
+        comentariosGerais = comentariosAPI.map(comentario => ({
+            id: comentario.id,
+            autor: comentario.userName || "Usuário",
+            assunto: "Comentário",
+            texto: comentario.description || "",
+            data: new Date(comentario.date).toLocaleDateString('pt-BR'),
+            hora: new Date(comentario.date).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+            userId: comentario.userId
+        }));
+
+        // Apenas renderiza os comentários públicos, SEM abrir modal
+        renderizarComentariosPublicos();
+    } catch (error) {
+        console.error('Erro ao carregar comentários:', error);
+        comentariosGerais = [];
+        renderizarComentariosPublicos();
+    }
+}
+
+// Carregar comentarios gerais (ESSA FUNÇÃO ABRE O MODAL)
 
 async function carregarComentariosGerais() {
     try {
@@ -433,7 +461,7 @@ async function carregarComentariosGerais() {
         comentariosGerais = comentariosAPI.map(comentario => ({
             id: comentario.id,
             autor: comentario.userName || "Usuário",
-            assunto: "Comentário", // API não tem assunto
+            assunto: "Comentário",
             texto: comentario.description || "",
             data: new Date(comentario.date).toLocaleDateString('pt-BR'),
             hora: new Date(comentario.date).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
@@ -597,12 +625,12 @@ function abrirDetalhesEvento(eventoId) {
 }
 
 
-// Iniciar
-
+// CORREÇÃO: Inicialização sem abrir modal de comentários automaticamente
 document.addEventListener("DOMContentLoaded", async () => {
     // Carrega eventos da API
     await carregarEventos();
 
-    // Carrega comentários da API
-    await carregarComentariosGerais();
+    // REMOVIDO: await carregarComentariosGerais();
+    // Agora os comentários só são carregados quando o usuário faz login
+    // ou quando clica no botão de comentários
 });
