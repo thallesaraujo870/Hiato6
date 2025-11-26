@@ -42,14 +42,14 @@ body {
     margin-top: 5px;
 }
 
-/* NAVEGAÇÃO E MENU FIXO (O PONTO CHAVE DA CORREÇÃO) */
+/* NAVEGAÇÃO E MENU (REMOVENDO O FIXO PARA ENCAIXAR ABAIXO DO HERO) */
 nav {
     background: #34a853;
     color: white;
     padding: 15px 0;
-    /* FIXA A NAVEGAÇÃO NO TOPO */
-    position: fixed;
-    top: 0;
+    /* CORREÇÃO 1: Removido position: fixed e top: 0
+       Agora a NAV flui naturalmente abaixo do .hero */
+    position: static;
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -158,10 +158,11 @@ section h2 {
     padding-bottom: 5px;
 }
 
-/* CORREÇÃO DO CONTEÚDO ESCONDIDO - AJUSTE FINAL */
+/* CORREÇÃO 1: REMOVE O PADDING EXTRA DA SEÇÃO SOBRE */
 #sobre {
-    /* VALOR AJUSTADO PARA COMPENSAR A ALTURA EXATA DO NAV FIXO (60px + respiro) */
-    padding-top: 75px;
+    /* Retorna ao padding padrão ou ajusta se necessário.
+       Removido o padding-top de 75px/100px */
+    padding-top: 40px;
 }
 
 /* SEÇÃO SOBRE (GRID) */
@@ -179,9 +180,12 @@ section h2 {
     color: #555;
 }
 
+/* CORREÇÃO 2: TAMANHO DA IMAGEM E ALINHAMENTO NO GRID/FLEX */
 .sala-img {
     flex: 1;
-    max-width: 100%;
+    /* Limitamos a largura máxima para que ela não domine o espaço */
+    max-width: 450px;
+    width: 100%;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -193,6 +197,8 @@ section h2 {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-top: 40px;
+    /* CORREÇÃO 3: Alinhamento vertical para evitar desalinhamento */
+    align-items: start;
 }
 
 .step {
@@ -201,6 +207,8 @@ section h2 {
     border-radius: 8px;
     border: 1px solid #ddd;
     transition: transform 0.3s, box-shadow 0.3s;
+    /* CORREÇÃO 3: Força altura mínima para os cartões ficarem uniformes */
+    min-height: 250px;
 }
 
 .step:hover {
@@ -309,6 +317,8 @@ section h2 {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
     margin-top: 40px;
+    /* CORREÇÃO 4: Alinhamento vertical para evitar desalinhamento */
+    align-items: center;
 }
 
 .resultado-card {
@@ -317,6 +327,11 @@ section h2 {
     padding: 30px 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* CORREÇÃO 4: Garante altura uniforme para evitar desalinhamento */
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .resultado-number {
@@ -366,31 +381,26 @@ footer {
     margin: 0;
 }
 
-/* MODAIS (A LÓGICA QUE CAUSOU O PROBLEMA DE QUEBRA) */
+/* MODAIS (MANTIDOS ESTÁVEIS) */
 .modal {
     display: none;
-    /* ESCONDIDO POR PADRÃO, ISSO É CRUCIAL */
     position: fixed;
     z-index: 1050;
-    /* Alto Z-index para sobrepor tudo */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.6);
-    /* Fundo escuro transparente */
 }
 
 .modal.show {
     display: block;
-    /* O JS adiciona a classe 'show' para mostrar */
 }
 
 .modal-content {
     background-color: #fff;
     margin: 10% auto;
-    /* 10% de margem do topo e centralizado */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -530,7 +540,9 @@ footer {
         width: 100%;
     }
 
+    /* Ajuste para que a imagem não fique tão grande no mobile */
     .sala-img {
+        max-width: 100%;
         margin-top: 20px;
     }
 }
