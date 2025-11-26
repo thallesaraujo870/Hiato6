@@ -60,6 +60,8 @@ nav ul {
     align-items: center;
     margin: 0;
     padding: 0;
+    flex-wrap: wrap;
+    gap: 0;
 }
 
 nav ul li {
@@ -79,10 +81,10 @@ nav ul li a:hover {
     background-color: #1e3c72;
 }
 
-/* MENU ADMIN - REORGANIZADO PARA FICAR DISCRETO */
+/* MENU ADMIN - NA MESMA LINHA, ESTILO IGUAL AOS OUTROS */
 .admin-menu {
     position: relative;
-    margin-left: auto;
+    margin: 0 15px;
 }
 
 .admin-menu:not(.active) {
@@ -92,23 +94,33 @@ nav ul li a:hover {
 .admin-toggle {
     cursor: pointer;
     font-weight: bold;
-    background: #1e3c72;
-    padding: 8px 16px;
+    background: transparent;
+    color: white;
+    padding: 8px 12px;
     border-radius: 5px;
     transition: background-color 0.3s;
     display: flex;
     align-items: center;
     gap: 5px;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.admin-toggle::before {
+    content: '👤';
+    font-size: 1rem;
 }
 
 .admin-toggle::after {
     content: '▼';
     font-size: 0.7rem;
+    margin-left: 3px;
     transition: transform 0.3s;
 }
 
 .admin-toggle:hover {
-    background-color: #0d1e3d;
+    background-color: #1e3c72;
 }
 
 .admin-dropdown {
