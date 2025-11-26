@@ -1,6 +1,5 @@
 
-
-const API_BASE_URL = 'https://api.allorigins.win/raw?url=http://18.218.141.160:8080';
+const API_BASE_URL = 'http://18.218.141.160:8080';
 
 let usuarioLogado = false;
 let nomeUsuario = "";
