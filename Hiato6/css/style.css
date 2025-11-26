@@ -158,11 +158,10 @@ section h2 {
     padding-bottom: 5px;
 }
 
-/* CORREÇÃO DO CONTEÚDO ESCONDIDO */
+/* CORREÇÃO DO CONTEÚDO ESCONDIDO - AJUSTE FINAL */
 #sobre {
-    /* ADICIONA ESPAÇAMENTO PARA COMPENSAR A ALTURA DO NAV FIXO */
-    padding-top: 100px;
-    /* Garante espaço suficiente abaixo do nav fixo */
+    /* VALOR AJUSTADO PARA COMPENSAR A ALTURA EXATA DO NAV FIXO (60px + respiro) */
+    padding-top: 75px;
 }
 
 /* SEÇÃO SOBRE (GRID) */
