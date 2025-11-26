@@ -48,7 +48,6 @@ nav {
     color: white;
     padding: 15px 0;
     position: static;
-    /* Garantimos que não está fixo */
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -186,13 +185,12 @@ section h2 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* SEÇÃO PARTICIPAR (STEPS) */
+/* SEÇÃO PARTICIPAR (STEPS) - CORRIGIDO */
 .participar-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-top: 40px;
-    /* CORREÇÃO 1: Garante que os itens do grid se estiquem para a mesma altura */
     align-items: stretch;
 }
 
@@ -202,11 +200,12 @@ section h2 {
     border-radius: 8px;
     border: 1px solid #ddd;
     transition: transform 0.3s, box-shadow 0.3s;
-    /* CORREÇÃO 1: Garante que o conteúdo interno use flex para centralizar, se necessário */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    /* Alinha o conteúdo ao topo dentro do step */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 280px;
 }
 
 .step:hover {
@@ -309,41 +308,42 @@ section h2 {
     cursor: default;
 }
 
-/* SEÇÃO RESULTADOS */
+/* SEÇÃO RESULTADOS - CORRIGIDO */
 .resultados-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 30px;
     margin-top: 40px;
-    /* CORREÇÃO 2: Garante que os itens do grid se estiquem para a mesma altura */
-    align-items: stretch;
+    flex-wrap: wrap;
 }
 
 .resultado-card {
     background: #1e3c72;
     color: white;
-    padding: 30px 20px;
+    padding: 40px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* CORREÇÃO 2: Usa flexbox para centralizar o conteúdo verticalmente */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    /* Centraliza o texto */
-    min-height: 180px;
-    /* Um min-height para garantir que os cards com menos texto não encolham tanto */
+    min-width: 200px;
+    width: 200px;
+    height: 200px;
 }
 
 .resultado-number {
     font-size: 3rem;
     font-weight: bold;
     color: #34a853;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .resultado-label {
     font-size: 1rem;
+    line-height: 1.4;
 }
 
 /* FOOTER */
@@ -544,6 +544,16 @@ footer {
         max-width: 100%;
         margin-top: 20px;
     }
+
+    .resultados-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .resultado-card {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -557,9 +567,7 @@ footer {
         width: 100%;
         background: #2a8b44;
         position: absolute;
-        /* Ajuste para mobile, se o hero não for fixo */
         top: auto;
-        /* Remover top fixo */
         left: 0;
         text-align: center;
         box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
