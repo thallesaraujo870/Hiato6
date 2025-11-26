@@ -79,10 +79,10 @@ nav ul li a:hover {
     background-color: #1e3c72;
 }
 
-/* MENU ADMIN */
+/* MENU ADMIN - REORGANIZADO PARA FICAR DISCRETO */
 .admin-menu {
     position: relative;
-    margin-left: 20px;
+    margin-left: auto;
 }
 
 .admin-menu:not(.active) {
@@ -93,9 +93,18 @@ nav ul li a:hover {
     cursor: pointer;
     font-weight: bold;
     background: #1e3c72;
-    padding: 8px 12px;
+    padding: 8px 16px;
     border-radius: 5px;
     transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.admin-toggle::after {
+    content: '▼';
+    font-size: 0.7rem;
+    transition: transform 0.3s;
 }
 
 .admin-toggle:hover {
@@ -105,29 +114,53 @@ nav ul li a:hover {
 .admin-dropdown {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     right: 0;
     background: #1e3c72;
     list-style: none;
-    padding: 10px 0;
-    border-radius: 5px;
-    min-width: 200px;
+    padding: 8px 0;
+    border-radius: 8px;
+    min-width: 220px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     z-index: 1010;
 }
 
 .admin-dropdown.show {
     display: block;
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.admin-dropdown li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-dropdown li:last-child {
+    border-bottom: none;
 }
 
 .admin-dropdown li a {
     display: block;
-    padding: 10px 15px;
+    padding: 12px 20px;
     text-align: left;
     white-space: nowrap;
+    transition: all 0.2s;
 }
 
 .admin-dropdown li a:hover {
     background-color: #34a853;
+    padding-left: 25px;
 }
 
 /* MENU HAMBÚRGUER (MOBILE) */
@@ -609,13 +642,15 @@ footer {
         display: block;
         width: 100%;
         text-align: center;
-        padding: 10px;
+        padding: 12px;
+        justify-content: center;
     }
 
     .admin-dropdown {
         position: static;
         width: 100%;
         margin-top: 5px;
+        box-shadow: none;
     }
 
     .modal-content {
