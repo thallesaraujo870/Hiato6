@@ -180,9 +180,7 @@ section {
     min-height: 400px;
 }
 
-/* CORREÇÃO CRÍTICA DE LAYOUT: Garante que o conteúdo não fique por baixo do menu fixo */
 #sobre {
-    /* Ajusta o padding-top da primeira seção para evitar sobreposição da barra de navegação */
     padding-top: 100px;
 }
 
