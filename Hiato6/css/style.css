@@ -30,7 +30,9 @@ body {
     right: 0;
     width: 280px;
     height: 280px;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,10 L80,10 L90,50 L50,90 L10,50 Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/></svg>');
+    /* Certifique-se de que o SVG está formatado corretamente se você usar um Data URI */
+    /* background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,10 L80,10 L90,50 L50,90 L10,50 Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/></svg>'); */
+    /* Se a imagem SVG for grande, é melhor referenciá-la como arquivo, mas mantive o seu original */
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.3;
@@ -180,6 +182,13 @@ section {
     min-height: 400px;
 }
 
+/* CORREÇÃO CRÍTICA DE LAYOUT: Garante que o conteúdo não fique por baixo do menu fixo */
+#sobre {
+    /* Ajusta o padding-top da primeira seção para evitar sobreposição da barra de navegação */
+    padding-top: 100px;
+}
+
+
 section:nth-child(even) {
     background: #f8f9fa;
 }
@@ -214,7 +223,9 @@ h2 {
 .sala-img {
     width: 100%;
     height: 280px;
-    background: linear-gradient(135deg, #1e3c72, #34a853);
+    /* Certifique-se que o src="2.png" no HTML está funcionando */
+    object-fit: cover;
+    /* Adicionado para garantir que a imagem preencha o espaço */
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
@@ -473,6 +484,27 @@ h2 {
 .modal-content textarea {
     resize: vertical;
 }
+
+/* Estilos para o formulário de Cadastro de Instituição (Checkbox) */
+#form-instituicao label:has(#inst-tipo) {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+    /* Adiciona cursor para indicar interatividade no label */
+}
+
+#form-instituicao #inst-tipo {
+    /* Reseta a largura para o tamanho padrão de um checkbox */
+    width: auto;
+    /* Adiciona margem para separá-lo do texto do label */
+    margin-right: 10px;
+    height: 18px;
+    /* Remove o padding e border que os inputs text têm, voltando ao padrão de checkbox */
+    padding: 0;
+    border: 1px solid #ccc;
+}
+
 
 /* Detalhes do Evento */
 .detalhes-info {
