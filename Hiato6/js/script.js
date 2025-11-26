@@ -1,5 +1,3 @@
-
-
 const API_BASE_URL = '/api';
 
 let usuarioLogado = false;
@@ -55,10 +53,18 @@ async function apiPost(endpoint, data) {
         });
 
         if (!response.ok) {
-            throw new Error(`Erro: ${response.status}`);
+            // Tenta obter o corpo da resposta para um erro mais detalhado
+            const errorBody = await response.text();
+            throw new Error(`Erro: ${response.status}. Detalhes: ${errorBody || response.statusText}`);
         }
 
-        return await response.json();
+        // Tenta retornar JSON, mas pode retornar texto/vazio se a API for 201 Created sem corpo
+        try {
+            return await response.json();
+        } catch (e) {
+            return {};
+        }
+
     } catch (error) {
         console.error('Erro na requisição POST:', error);
         throw error;
@@ -236,6 +242,50 @@ document.getElementById("form-cadastro").addEventListener("submit", async (e) =>
         console.error(error);
     }
 });
+
+/**
+ * 🏢 FUNÇÃO ADICIONADA: CADASTRO DE INSTITUIÇÃO
+ * Rota: /institutions (POST)
+ * Requer: Token de autenticação (authToken)
+ */
+document.getElementById("form-instituicao")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!usuarioLogado || !authToken || !userId) {
+        alert("Você precisa estar logado para cadastrar uma instituição.");
+        return;
+    }
+
+    try {
+        // Coleta dos Dados do Formulário (Usando os IDs que corrigimos no HTML)
+        const novaInstituicao = {
+            name: document.getElementById("inst-nome").value,
+            cnpj: document.getElementById("inst-cnpj").value,
+            // O checkbox.checked retorna true ou false, perfeito para o booleano 'type'
+            type: document.getElementById("inst-tipo").checked,
+            address: document.getElementById("inst-endereco").value,
+            telephone: document.getElementById("inst-telefone").value,
+            email: document.getElementById("inst-email").value,
+            website: document.getElementById("inst-website").value,
+            linkImageLogo: document.getElementById("inst-logo").value,
+            // O userId deve ser o ID do usuário que está logado (variável global)
+            userId: userId
+        };
+
+        // Chamada à API para a rota de Instituições (POST)
+        await apiPost('/institutions', novaInstituicao);
+
+        alert("Instituição cadastrada com sucesso!");
+        fecharModal("instituicao");
+        document.getElementById("form-instituicao").reset();
+
+    } catch (error) {
+        alert("Erro ao cadastrar instituição. Verifique os dados e o console para mais detalhes.");
+        console.error('Erro de cadastro de Instituição:', error);
+    }
+});
+// -------------------------------------------------------------
+
 
 function mostrarMenuAdmin() {
     const adminMenu = document.getElementById("admin-menu");
@@ -480,8 +530,8 @@ function renderizarComentariosPublicos() {
 
     container.innerHTML = comentariosOrdenados.map(comentario => `
         <div style="background: white; padding: 25px; border-radius: 10px; border-left: 4px solid #34a853; box-shadow: 0 3px 15px rgba(0,0,0,0.15); transition: transform 0.3s;" 
-             onmouseover="this.style.transform='translateY(-5px)'" 
-             onmouseout="this.style.transform='translateY(0)'">
+            onmouseover="this.style.transform='translateY(-5px)'" 
+            onmouseout="this.style.transform='translateY(0)'">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
                 <span style="font-weight: 600; color: #1e3c72; font-size: 1.05rem;">👤 ${comentario.autor}</span>
                 <span style="color: #999; font-size: 0.9rem;">📅 ${comentario.data} às ${comentario.hora}</span>
