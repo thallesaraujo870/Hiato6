@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Site</title>
+    <link rel="stylesheet" href="style.css"> <!-- seu CSS -->
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo-img">
+            <p class="tagline">Sua tagline aqui</p>
+        </div>
+    </header>
+
+    <!-- MENU -->
+    <nav>
+        <div class="menu-btn" id="menu-btn">&#9776;</div>
+        <ul id="menu">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#participar">Como Participar</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#resultados">Resultados</a></li>
+            <li><a href="#comentarios">Comentários</a></li>
+        </ul>
+        <div class="admin-menu">
+            <div class="admin-toggle" id="admin-toggle">Admin</div>
+            <ul class="admin-dropdown" id="admin-dropdown">
+                <li><a href="#">Painel</a></li>
+                <li><a href="#">Configurações</a></li>
+                <li><a href="#">Sair</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+        <div class="container sobre-content">
+            <div class="sobre-text">
+                <h2>Sobre Nós</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            </div>
+            <div class="sobre-image"></div>
+        </div>
+    </section>
+
+    <!-- COMO PARTICIPAR -->
+    <section id="participar">
+        <div class="container">
+            <h2>Como Participar</h2>
+            <div class="participar-steps">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <h3>Passo 1</h3>
+                    <p>Descrição do passo 1.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <h3>Passo 2</h3>
+                    <p>Descrição do passo 2.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <h3>Passo 3</h3>
+                    <p>Descrição do passo 3.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTOS -->
+    <section id="eventos">
+        <div class="container">
+            <h2>Eventos</h2>
+            <div class="eventos-grid">
+                <div class="evento-card">
+                    <h3>Evento 1</h3>
+                    <p class="evento-info"><strong>Data:</strong> 24/11/2025</p>
+                    <p class="evento-info">Descrição do evento 1.</p>
+                </div>
+                <div class="evento-card">
+                    <h3>Evento 2</h3>
+                    <p class="evento-info"><strong>Data:</strong> 01/12/2025</p>
+                    <p class="evento-info">Descrição do evento 2.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section id="resultados">
+        <div class="container">
+            <h2>Resultados</h2>
+            <div class="resultados-grid">
+                <div class="resultado-card">
+                    <div class="resultado-number">95%</div>
+                    <div class="resultado-label">Satisfação</div>
+                </div>
+                <div class="resultado-card">
+                    <div class="resultado-number">120</div>
+                    <div class="resultado-label">Participantes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMENTÁRIOS -->
+    <section id="comentarios">
+        <div class="container">
+            <h2>Comentários</h2>
+            <div class="comentarios-grid">
+                <div class="comentario-card">
+                    <div class="comentario-header">
+                        <span class="comentario-autor">Maria</span>
+                        <span class="comentario-rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                    </div>
+                    <p class="comentario-evento">Evento 1</p>
+                    <p class="comentario-texto">Muito bom, adorei participar!</p>
+                    <p class="comentario-data">24/11/2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Meu Site. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- JS MENU -->
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const menu = document.getElementById("menu");
+        menuBtn.addEventListener("click", () => {
+            menu.classList.toggle("open");
+        });
+
+        const adminToggle = document.getElementById("admin-toggle");
+        const adminDropdown = document.getElementById("admin-dropdown");
+        adminToggle.addEventListener("click", () => {
+            adminDropdown.classList.toggle("show");
+        });
+    </script>
+
+</body>
+
+</html>
